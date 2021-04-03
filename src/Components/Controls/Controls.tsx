@@ -1,16 +1,43 @@
-import react from 'react';
-// import '../Controls';
+import react, { useState } from 'react';
 
 type Props = {
     setTimeInSeconds: Function
 }
 
 function Controls(props: Props) {
+    const { setTimeInSeconds } = props;
+    const [intervalId, setIntervalId] = useState<number>(0);
+
+    const handlePlayButton = (e: object) => {
+        const interval:any = setInterval(() => {
+            setTimeInSeconds((previousState:number) => previousState + 1);
+        }, 1000);
+
+        setIntervalId(interval);
+    }
+
+    const handleStopButton = () => {
+
+    }
+
+    const handleResetButton = () => {
+        
+    }
+
     return (
         <section>
-            <button style={btnStyles}>Stop</button>
-            <button style={btnStyles}>Play</button>
-            <button style={btnStyles}>Reset</button>
+            <button
+                onClick={handlePlayButton} 
+                style={btnStyles}
+            >Play</button>
+            <button
+                onClick={handleStopButton} 
+                style={btnStyles}
+            >Stop</button>
+            <button
+                onClick={handleResetButton} 
+                style={btnStyles}
+            >Reset</button>
         </section>
     )
 }
